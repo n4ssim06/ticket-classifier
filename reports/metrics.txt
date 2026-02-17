@@ -1,0 +1,16 @@
+dataset: Tobi-Bueck/customer-support-tickets
+filter: language == en
+target: type
+rows_used: 28261
+train_size: 22608
+test_size: 5653
+
+class_distribution (type):
+Incident: 2243
+Request: 1633
+Problem: 1179
+Change: 598
+
+model: tfidf + logistic regression
+metric: f1_macro
+f1_macro: 0.84

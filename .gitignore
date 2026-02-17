@@ -3,5 +3,7 @@ __pycache__/
 *.pyc
 data/
 models/
-reports/
+reports/*
+!reports/confusion_matrix.png
+!reports/metrics.txt
 .DS_Store
