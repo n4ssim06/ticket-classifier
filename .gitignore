@@ -7,3 +7,4 @@ reports/*
 !reports/confusion_matrix.png
 !reports/metrics.txt
 .DS_Store
+.vscode
