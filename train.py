@@ -6,6 +6,8 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report, f1_score, confusion_matrix
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
+import joblib
 
 ds = load_dataset("Tobi-Bueck/customer-support-tickets")
 
@@ -47,7 +49,6 @@ y_pred = model.predict(X_test)
 print("f1 macro :", f1_score(y_test, y_pred, average="macro"))
 print(classification_report(y_test, y_pred))
 
-
 cm = confusion_matrix(y_test, y_pred, labels=model.classes_)
 
 plt.figure(figsize=(6, 5))
@@ -56,3 +57,9 @@ plt.xlabel("predicted")
 plt.ylabel("true")
 plt.tight_layout()
 plt.savefig("reports/confusion_matrix.png")
+
+os.makedirs("models", exist_ok=True)
+joblib.dump(model, "models/model.joblib")
+
+print("classes:", model.classes_)
+print("proba example:", model.predict_proba([df["text"].iloc[0]])[0])
