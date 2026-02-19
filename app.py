@@ -21,7 +21,9 @@ if st.button("predict"):
     if not text.strip():
         st.warning("please enter some text.")
     else:
-        preds = top_predict(model, text)
+        preds, best = top_predict(model, text)
+        if best < 0.50:
+            st.warning("prediction is uncertain for this text (low confidence).")
         st.subheader("top 3 predictions")
         for p in preds:
             st.write(f"- {p['label']}: {p['proba']*100:.1f}%")

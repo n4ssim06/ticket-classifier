@@ -40,7 +40,9 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 
 print("train size :", X_train.shape, "test size :", X_test.shape)
 
-model = Pipeline([("tifidf", TfidfVectorizer(stop_words="english")), ("clf", LogisticRegression(max_iter=1000))])
+model = Pipeline([
+        ("tifidf", TfidfVectorizer(stop_words="english", ngram_range=(1, 2), min_df=2, max_df=0.95, sublinear_tf=True)),
+        ("clf", LogisticRegression(max_iter=2000,  class_weight="balanced"))])
 
 model.fit(X_train, y_train)
 
